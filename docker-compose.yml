@@ -1,0 +1,52 @@
+version: '3'
+services:
+  web_server:
+    container_name: server_data_stone
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - static_volume:/app/staticfiles
+    depends_on:
+      - "app"
+
+  app:
+    build:
+      context: ./
+      dockerfile: ./config_docker_python/Dockerfile
+    container_name: app_data_stone
+    command: ["./wait_for_psql.sh"]
+    volumes:
+      - .:/src
+    environment:
+      - DEB=${DEB}
+    depends_on:
+      - "database"
+
+  database:
+    container_name: data_stone_db
+    image: postgres:12.2
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    container_name: data_stone_db_admin
+    image: dpage/pgadmin4:4.18
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_LISTEN_PORT: ${PGADMIN_LISTEN_PORT}
+    ports:
+      - "84:80"
+
+volumes:
+  static_volume:
+  postgres_data:
