@@ -1,12 +1,22 @@
 version: '3'
 services:
+  web_server:
+    container_name: server_data_stone
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - static_volume:/app/staticfiles
+    depends_on:
+      - "app"
+
   app:
     build:
       context: ./
       dockerfile: ./config_docker_python/Dockerfile
     container_name: app_data_stone
-    ports:
-      - "8000:8000"
     command: ["./wait_for_psql.sh"]
     volumes:
       - .:/src
