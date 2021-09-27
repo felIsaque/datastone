@@ -10,7 +10,7 @@ doc_path="${parent_path}/docs_data_stone"
 
 while :
 do
-    curl http://datastone:123456@data_stone_db:5432
+    curl http://datastone:senhadobanco@data_stone_db:5432
     db_up="$?"
 
     if [ $db_up -eq 52 ]

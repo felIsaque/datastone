@@ -28,16 +28,23 @@ e digite o seguinte comando:
 
 <br/>
 
-#### Iniciar no linux
+#### Iniciar no Windows
 
-`chmod +x up.sh FALSE`
+`.\up.ps1 FALSE`
 
 caso queira iniciar em modo de produção digite "TRUE" e não "FALSE"
 
+<br/>
+
+#### Iniciar no linux
+
+`chmod +x up.sh`
+
 `chmod +x data_stone_app/wait_for_psql.sh`
 
-`./up.sh`
+`./up.sh FALSE`
 
+caso queira iniciar em modo de produção digite "TRUE" e não "FALSE"
 
 ##### Abra o seu navegador preferido e digite:
 - http://localhost:8081/ - para a documentação
