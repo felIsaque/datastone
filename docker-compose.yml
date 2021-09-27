@@ -15,6 +15,8 @@ services:
       - DEB=${DEB}
     depends_on:
       - "database"
+    stdin_open: true
+    tty: true
 
   database:
     container_name: data_stone_db
