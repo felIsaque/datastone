@@ -5,6 +5,9 @@ echo "================================="
 echo "Inicializando o banco de dados..."
 echo "================================="
 
+parent_path="$(dirname "$PWD")"
+doc_path="${parent_path}/docs_data_stone"
+
 while :
 do
     curl http://datastone:123456@data_stone_db:5432
@@ -32,6 +35,7 @@ done
 
 if [ "$DEB" == "FALSE" ]
 then
+    (cd $doc_path && mkdocs serve -a 0.0.0.0:8081) &
     python manage.py runserver 0.0.0.0:8000
 else
     gunicorn --bind 0.0.0.0:8000 app.wsgi

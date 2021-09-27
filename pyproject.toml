@@ -14,6 +14,7 @@ psycopg2 = "^2.9.1"
 gunicorn = "^20.1.0"
 django-admin = "^2.0.1"
 python-decouple = "^3.4"
+mkdocs = "^1.2.2"
 
 [tool.poetry.dev-dependencies]
 
