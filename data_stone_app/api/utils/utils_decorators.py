@@ -1,6 +1,7 @@
 from django.db.utils import OperationalError
 from rest_framework.response import Response
 from rest_framework import status
+from forex_python.converter import RatesNotAvailableError
 
 from api.utils.utils_exceptions import ParamsMissing, SameParams
 
@@ -45,6 +46,13 @@ def return_api_errors_currency_params(func):
             content = {
                 "status": "error",
                 "msg": "Não é possível transmitir para a mesma moeda",
+            }
+            return Response(content, status=status.HTTP_400_BAD_REQUEST)
+
+        except RatesNotAvailableError:
+            content = {
+                "status": "error",
+                "msg": "Não temos suporte para este tipo de moeda",
             }
             return Response(content, status=status.HTTP_400_BAD_REQUEST)
 

@@ -49,3 +49,18 @@ caso queira iniciar em modo de produção digite "TRUE" e não "FALSE"
 ##### Abra o seu navegador preferido e digite:
 - http://localhost:8081/ - para a documentação
 - http://localhost:8000/ - para a API
+
+<br/>
+
+## Endpoints
+`http://localhost:8000/api/?from=USD&to=BRL&amount=5`
+
+#### Resposta
+```
+{
+    "status": "success",
+    "msg": 26.58
+}
+```
+
+#A API só tem suporte para a criptomoeda bitcoin
