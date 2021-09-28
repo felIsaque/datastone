@@ -15,6 +15,7 @@ com código aberto.
 - Python >= 3.7
 - poetry
 - powershell: caso esteja no windows
+- docker/docker-compose
 
 
 <br/>
